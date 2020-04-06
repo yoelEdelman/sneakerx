@@ -20,9 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('main_image');
             $table->integer('price');
             $table->string('color');
-            $table->string('size');
+            $table->integer('size');
             $table->integer('quantity');
-            $table->timestamp('relaese_date');
+            $table->timestamp('release_date');
             $table->boolean('is_published');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
