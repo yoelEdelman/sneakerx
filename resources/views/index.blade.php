@@ -1,0 +1,82 @@
+@extends('layout.app')
+
+@section('title')
+    <title>Accueil</title>
+@endsection
+
+@section('header')
+    @include('layout.partials.header')
+@endsection
+
+@section('content')
+<div class="main main-raised">
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Dernières offres</h2>
+            <div class="row">
+                @foreach($products as $product)
+                    <div class="col-md-4">
+                        <div class="card card-product card-plain">
+                            <div class="card-header card-header-image">
+                                <a href="{{ route('products.show', $product->id) }}">
+                                    <img src="{{ $product->main_image }}" alt="">
+                                </a>
+                            </div>
+                            <div class="card-body text-center">
+                                <h4 class="card-title">
+                                    <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+                                </h4>
+                                <p class="card-description">{{ $product->description }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-container">
+                                    <span class="price"> {{ $product->price }} €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <br>
+
+            <h2 class="section-title">Nouvelles à la mode</h2>
+            <div class="row">
+                @for($i = 0; $i < 5; $i++)
+                    @if($i < 3)
+                        <div class="col-md-4">
+                            <div class="card card-background" style="background-image: url({{ $news[$i]->images[0]->filename }})">
+                                <div class="card-body">
+                                    <h6 class="card-category text-info">Productivy Apps</h6>
+                                    <a href="{{ route('news.show', $news[$i]->id) }}">
+                                        <h3 class="card-title">{{ $news[$i]->title }}</h3>
+                                    </a>
+                                    <p class="card-description">{{ $news[$i]->summary }}</p>
+                                    <a href="{{ route('news.show', $news[$i]->id) }}" class="btn btn-white btn-round">
+                                        <i class="material-icons">subject</i> Lire
+                                    </a>
+                                </div>
+                            </div> <!-- end card -->
+                        </div>
+                    @else
+                        <div class="col-md-6">
+                            <div class="card card-background" style="background-image: url({{ asset( $news[$i]->images[0]->filename ) }})">
+                                <div class="card-body">
+                                    <h6 class="card-category text-info">Tutorials</h6>
+                                    <a href="{{ route('news.show', $news[$i]->id) }}">
+                                        <h3 class="card-title">{{ $news[$i]->title }}</h3>
+                                    </a>
+                                    <p class="card-description">{{ $news[$i]->summary }}</p>
+                                    <a href="{{ route('news.show', $news[$i]->id) }}" class="btn btn-white btn-round">
+                                        <i class="material-icons">subject</i> Lire
+                                    </a>
+                                </div>
+                            </div> <!-- end card -->
+                        </div>
+                    @endif
+                @endfor
+            </div>
+        </div>
+    </div><!-- section -->
+</div>
+@endsection
