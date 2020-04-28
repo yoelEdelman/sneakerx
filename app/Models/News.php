@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
@@ -22,6 +23,18 @@ class News extends Model
      */
     protected $guarded = [];
 
+    /**
+     * Get the created news date in humans format.
+     *
+     * @return string
+     */
+    public function getCreatedNewsDateForHumans()
+    {
+        $date = new carbon($this->created_at);
+        return $date->diffForHumans();
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     | Relations
@@ -35,7 +48,7 @@ class News extends Model
      */
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
@@ -43,6 +56,6 @@ class News extends Model
      */
     public function images()
     {
-        return $this->morphToMany(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 }
