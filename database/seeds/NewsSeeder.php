@@ -35,7 +35,7 @@ class NewsSeeder extends Seeder
                 $image = new Image();
                 $image->imageable_id = $news->id;
                 $image->imageable_type = 'App\Models\News';
-                $image->filename = $faker->imageUrl($width = 640, $height = 480);
+                $image->filename = 'https://picsum.photos/640/480';
                 $image->save();
             }
         }

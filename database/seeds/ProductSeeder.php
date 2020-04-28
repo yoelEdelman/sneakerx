@@ -27,14 +27,14 @@ class ProductSeeder extends Seeder
             $image = new Image();
             $image->imageable_id = $brand->id;
             $image->imageable_type = 'App\Models\Brand';
-            $image->filename = $faker->imageUrl($width = 640, $height = 480);
+            $image->filename = 'https://picsum.photos/640/480';
             $image->save();
 
             for ($j = 0; $j < 20; $j++) {
                 $product = new Product();
                 $product->name = $faker->sentence($nbWords = 2, $variableNbWords = true);
                 $product->description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
-                $product->main_image = $faker->imageUrl($width = 640, $height = 480);
+                $product->main_image = 'https://picsum.photos/640/480';
                 $product->price = $faker->numberBetween($min = 20, $max = 200);
                 $product->color = $faker->colorName;
                 $product->size = $faker->numberBetween($min = 38, $max = 46);
@@ -48,7 +48,7 @@ class ProductSeeder extends Seeder
                     $image = new Image();
                     $image->imageable_id = $product->id;
                     $image->imageable_type = 'App\Models\Product';
-                    $image->filename = $faker->imageUrl($width = 640, $height = 480);
+                    $image->filename = 'https://picsum.photos/640/480';
                     $image->save();
                 }
             }
