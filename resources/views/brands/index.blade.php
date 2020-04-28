@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-    <title>Accueil</title>
+    <title>Marques</title>
 @endsection
 
 @section('body_class')

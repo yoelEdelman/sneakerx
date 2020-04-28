@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-    <title>Accueil</title>
+    <title>Liste des produits</title>
 @endsection
 
 @section('body_class')
