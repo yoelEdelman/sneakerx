@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'address', 'zipcode',
+    ];
+
+    /**
      * The model's default values for attributes.
      *
      * @var array
@@ -20,5 +29,5 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $guarded = [];
+//    protected $guarded = [];
 }

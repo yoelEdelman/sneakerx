@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'customer_id', 'order_number'
+    ];
+
+    /**
      * The model's default values for attributes.
      *
      * @var array
@@ -20,7 +29,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $guarded = [];
+//    protected $guarded = [];
 
     /*
     |--------------------------------------------------------------------------
