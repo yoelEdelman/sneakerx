@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,17 +14,20 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart.index');
-    }
+        $total = 0;
+        foreach (session('userCart') as $product) {
+            if ($product['quantity'] > 1) {
+                for ($i = 0; $i < $product['quantity']; $i++) {
+                    $total += $product['price'];
+                }
+            }
+            else {
+                $total += $product['price'];
+            }
+        }
+        session()->put('userCartTotal', $total);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('cart.index');
     }
 
     /**
@@ -34,29 +38,41 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $id = $request['product_id'];
+        $cart = session()->get('userCart');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        if(!$cart) {
+            $cart = [
+                $id => [
+                    'product_id' => $id,
+                    'image' => $request['main_image'],
+                    'name' => $request['product_name'],
+                    'description' => $request['product_description'],
+                    'price' => $request['product_price'],
+                    'color' => $request['color'],
+                    'size' => $request['size'],
+                    'quantity' => $request['quantity'],
+                    'brand' => $request['product_brand']
+                ]
+            ];
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $cart[$id] = [
+            'product_id' => $id,
+            'image' => $request['main_image'],
+            'name' => $request['product_name'],
+            'description' => $request['product_description'],
+            'price' => $request['product_price'],
+            'color' => $request['color'],
+            'size' => $request['size'],
+            'quantity' => $request['quantity'],
+            'brand' => $request['product_brand']
+        ];
+
+        session()->put('userCart', $cart);
+        session()->flash('success', 'Product added to cart successfully!');
+
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -68,7 +84,21 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request['action'] == 'add') {
+            $cart = session()->get('userCart');
+
+            $cart[$id]["quantity"]++;
+        }
+        elseif ($request['action'] == 'remove') {
+            $cart = session()->get('userCart');
+
+            $cart[$id]["quantity"]--;
+        }
+
+        session()->put('userCart', $cart);
+        session()->flash('success', 'Cart updated successfully');
+
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +109,19 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($id)
+        {
+            $cart = session()->get('userCart');
+
+            if(isset($cart[$id])) {
+
+                unset($cart[$id]);
+
+                session()->put('userCart', $cart);
+            }
+
+            session()->flash('success', 'Product removed successfully');
+            return redirect()->back();
+        }
     }
 }
