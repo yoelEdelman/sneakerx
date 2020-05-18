@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('nav-style')
+    background-color: #212121 !important;
+@endsection
+
 @section('title')
     <title>Contact</title>
 @endsection
@@ -15,28 +19,41 @@
     <div class="main main-raised">
         <div class="contact-content">
             <div class="container">
+
+                {{-- Flash messages --}}
+                @if(session()->has('success'))
+                    @include('messages.success')
+                @elseif(session()->has('error'))
+                    @include('messages.error')
+                @endif
+
                 <h2 class="title">Envoie-nous un message</h2>
                 <div class="row">
                     <div class="col-md-6">
                         <p class="description">Vous pouvez nous contacter pour tout ce qui concerne nos produits. Nous vous contacterons dans les plus brefs délais.<br><br>
                         </p>
-                        <form role="form" id="contact-form" method="post">
+                        <form role="form" id="contact-form" action="{{ url('contact') }}" method="POST">
+                            @csrf
                             <div class="form-group">
                                 <label for="name" class="bmd-label-floating">Votre nom</label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+                                @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmails" class="bmd-label-floating">Adresse e-mail</label>
-                                <input type="email" class="form-control" id="exampleInputEmails">
+                                <label for="email" class="bmd-label-floating">Adresse e-mail</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
                                 <span class="bmd-help">Nous ne partagerons jamais votre e-mail avec quelqu'un d'autre.</span>
+                                @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             <div class="form-group">
                                 <label for="phone" class="bmd-label-floating">Téléphone</label>
-                                <input type="text" class="form-control" id="phone">
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}">
+                                @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             <div class="form-group label-floating">
                                 <label class="form-control-label bmd-label-floating" for="message"> Votre message</label>
-                                <textarea class="form-control" rows="6" id="message"></textarea>
+                                <textarea class="form-control @error('message') is-invalid @enderror" rows="6" id="message" name="message">{{ old('message') }}</textarea>
+                                @error('message')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             <div class="submit text-center">
                                 <input type="submit" class="btn btn-primary btn-raised btn-round" value="Nous contacter">

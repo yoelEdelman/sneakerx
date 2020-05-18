@@ -12,6 +12,14 @@
 <div class="main main-raised">
     <div class="section">
         <div class="container">
+
+            {{-- Flash messages --}}
+            @if(session()->has('success'))
+                @include('messages.success')
+            @elseif(session()->has('error'))
+                @include('messages.error')
+            @endif
+
             <h2 class="section-title">Dernières offres</h2>
             <div class="row">
                 @foreach($products as $product)

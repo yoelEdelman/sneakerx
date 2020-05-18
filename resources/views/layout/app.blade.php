@@ -14,6 +14,13 @@
 
 @include('layout.partials.nav')
 
+{{-- Flash messages --}}
+{{--@if(session()->has('success'))--}}
+{{--    @include('messages.success')--}}
+{{--@elseif(session()->has('error'))--}}
+{{--    @include('messages.error')--}}
+{{--@endif--}}
+
 @yield('header')
 
 @yield('content')

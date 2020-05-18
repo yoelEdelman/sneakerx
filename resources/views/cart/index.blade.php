@@ -21,13 +21,18 @@
 @endsection
 
 @section('content')
-
     <div class="main main-raised">
-
-
         <div class="container">
             <div class="card card-plain">
                 <div class="card-body">
+
+                    {{-- Flash messages --}}
+                    @if(session()->has('success'))
+                        @include('messages.success')
+                    @elseif(session()->has('error'))
+                        @include('messages.error')
+                    @endif
+
                     <h3 class="card-title">Panier</h3>
                     <br />
                     <div class="table-responsive">
@@ -45,141 +50,85 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../assets/img/product1.jpg" alt="...">
-                                    </div>
-                                </td>
-                                <td class="td-name">
-                                    <a href="#jacket">Spring Jacket</a>
-                                    <br />
-                                    <small>by Dolce&Gabbana</small>
-                                </td>
-                                <td>
-                                    Red
-                                </td>
-                                <td>
-                                    M
-                                </td>
-                                <td class="td-number text-right">
-                                    <small>&euro;</small>549
-                                </td>
-                                <td class="td-number">
-                                    1
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">remove</i> </button>
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">add</i> </button>
-                                    </div>
-                                </td>
-                                <td class="td-number">
-                                    <small>&euro;</small>549
-                                </td>
-                                <td class="td-actions">
-                                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../assets/img/product2.jpg" alt="..." />
-                                    </div>
-                                </td>
-                                <td class="td-name">
-                                    <a href="#pants">Short Pants</a>
-                                    <br />
-                                    <small>by Pucci</small>
-                                </td>
-                                <td>
-                                    Purple
-                                </td>
-                                <td>
-                                    M
-                                </td>
-                                <td class="td-number">
-                                    <small>&euro;</small>499
-                                </td>
-                                <td class="td-number">
-                                    2
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">remove</i> </button>
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">add</i> </button>
-                                    </div>
-                                </td>
-                                <td class="td-number">
-                                    <small>&euro;</small>998
-                                </td>
-                                <td class="td-actions">
-                                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../assets/img/product3.jpg" alt="...">
-                                    </div>
-                                </td>
-                                <td class="td-name">
-                                    <a href="#nothing">Pencil Skirt</a>
-                                    <br />
-                                    <small>by Valentino</small>
-                                </td>
-                                <td>
-                                    White
-                                </td>
-                                <td>
-                                    XL
-                                </td>
-                                <td class="td-number">
-                                    <small>&euro;</small>799
-                                </td>
-                                <td class="td-number">
-                                    1
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">remove</i> </button>
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">add</i> </button>
-                                    </div>
-                                </td>
-                                <td class="td-number">
-                                    <small>&euro;</small>799
-                                </td>
-                                <td class="td-actions">
-                                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @if(session('userCart'))
+
+                                @foreach(session('userCart') as $key => $product)
+                                <tr>
+                                    <td>
+                                        <div class="img-container">
+                                            <img src="{{ $product['image'] }}" alt="...">
+                                        </div>
+                                    </td>
+                                    <td class="td-name">
+                                        <a href="{{ route('products.show', $key) }}">{{ $product['name'] }}</a>
+                                        <br />
+                                        <small>by {{ $product['brand'] }}</small>
+                                    </td>
+                                    <td>
+                                        {{ $product['color'] }}
+                                    </td>
+                                    <td>
+                                        {{ $product['size'] }}
+                                    </td>
+                                    <td class="td-number text-right">
+                                        {{ $product['price'] }}<small> &euro;</small>
+                                    </td>
+                                    <td class="td-number">
+                                        {{ $product['quantity'] }}
+                                        <div class="btn-group btn-group-sm">
+                                            <form action="{{ route('cart.update', $key) }}" method="POST">
+                                                <input name="_method" type="hidden" value="PUT">
+                                                @csrf
+                                                <button type="submit" class="btn btn-round btn-info"> <i class="material-icons">remove</i> </button>
+                                                <input type="hidden" name="product_id" value="{{ $product['product_id'] }}">
+                                                <input type="hidden" name="action" value="remove">
+                                            </form>
+                                            <form action="{{ route('cart.update', $key) }}" method="POST">
+                                                <input name="_method" type="hidden" value="PUT">
+                                                @csrf
+                                                <button type="submit" class="btn btn-round btn-info"> <i class="material-icons">add</i> </button>
+                                                <input type="hidden" name="product_id" value="{{ $product['product_id'] }}">
+                                                <input type="hidden" name="action" value="add">
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td class="td-number">
+                                        {{ $product['price'] }}<small> &euro;</small>
+                                    </td>
+                                    <td class="td-actions">
+                                        <form method="post" action="{{ route('cart.destroy', $key) }}">
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            @csrf
+                                            <button type="submit" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-link">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @else
+                                <div class="alert alert-primary" role="alert">
+                                    Votre panier est vide
+                                </div>
+                            @endif
                             <tr>
                                 <td colspan="3"></td>
                                 <td class="td-total">
                                     Total
                                 </td>
                                 <td colspan="1" class="td-price">
-                                    <small>&euro;</small>2,346
+                                    <small>&euro;</small>{{ session('userCartTotal') }}
                                 </td>
                                 <td colspan="1"></td>
                                 <td colspan="2" class="text-right">
-                                    <button type="button" class="btn btn-info btn-round">Finaliser l'achat <i class="material-icons">keyboard_arrow_right</i></button>
+                                    <a href="{{ route('checkout.index') }}" type="button" class="btn btn-info btn-round">Finaliser l'achat <i class="material-icons">keyboard_arrow_right</i></a>
                                 </td>
                             </tr>
-                            <!-- <tr>
-                            <td colspan="6"></td>
-                            <td colspan="2" class="text-right">
-                              <button type="button" class="btn btn-info btn-round">Complete Purchase <i class="material-icons">keyboard_arrow_right</i></button>
-                            </td>
-                          </tr> -->
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-
 @endsection
