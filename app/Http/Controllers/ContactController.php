@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
+use App\Mail\ContactUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -32,9 +35,16 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        //
+        Mail::to('yoeledelman@gmail.com')
+            ->send(new ContactUs($request->except('_token')));
+
+        session()->flash('success', 'Votre message a été envoyé avec succès');
+        return redirect()->route('contact.index');
+
+
+//        return view('index');
     }
 
     /**
