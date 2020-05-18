@@ -19,4 +19,6 @@ Route::resource('products', 'ProductController');
 Route::get('products/filter', 'ProductController@index')->name('products.filter');
 Route::resource('contact', 'ContactController');
 Route::resource('news', 'NewsController');
-Route::resource('cart', 'CartController');
+Route::resource('cart', 'CartController')->only(['index', 'store', 'update', 'destroy']);
+Route::resource('checkout', 'CheckoutController')->only(['index', 'store', 'update', 'destroy']);
+
