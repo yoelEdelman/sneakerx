@@ -49,7 +49,7 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="{{ route('cart.index') }}" class="nav-link"><i class="material-icons">shopping_cart</i> {{ count(session('userCart')) > 0 ? count(session('userCart')) : 0 }} Articles</a>
+                    <a href="{{ route('cart.index') }}" class="nav-link"><i class="material-icons">shopping_cart</i> {{ session('userCart') !== null ? count(session('userCart')) : 0 }} Articles</a>
                 </li>
             </ul>
 
