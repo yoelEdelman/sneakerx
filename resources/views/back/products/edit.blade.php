@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Modification d'un produit</h3>
                     </div>
-                    <form role="form" action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('backproducts.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ method_field('PUT') }}
                         <div class="card-body">

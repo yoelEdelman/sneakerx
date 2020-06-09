@@ -23,10 +23,10 @@
                     <a href="{{ route('contact.index') }}" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <form action="{{ url('products.filter') }}" method="POST" class="form-inline ml-auto" style="padding: 0.9375rem;">
-                        @csrf
+                    <form action="{{ url('products/filter') }}" method="GET" class="form-inline ml-auto" style="padding: 0.9375rem;">
+{{--                        @csrf--}}
                         <div class="form-group has-white">
-                            <input type="text" name="product_name" class="form-control" placeholder="Rechercher">
+                            <input type="text" name="name" class="form-control" placeholder="Rechercher">
                         </div>
                         <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
                             <i class="material-icons">search</i>

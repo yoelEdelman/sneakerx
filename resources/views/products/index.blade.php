@@ -346,7 +346,7 @@
                                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                                     <div class="card-header card-header-image">
                                         <a href="{{ route('products.show', $product->id) }}">
-                                            <img src="../assets/img/examples/suit-1.jpg" alt="...">
+                                            <img src="{{ $product->main_image }}" alt="...">
                                         </a>
                                     </div>
                                     <div class="card-body">

@@ -19,6 +19,18 @@ class ProductController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request)
+    {
+//        dd($request->name);
+        $products = Product::where('name', 'LIKE', "%{$request->name}%")->paginate(15);
+        return view('products.index', compact('products'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

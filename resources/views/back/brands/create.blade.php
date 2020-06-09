@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Création d'une marque</h3>
                     </div>
-                    <form role="form" action="{{ route('brands.store') }}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('backbrands.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">

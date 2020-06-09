@@ -68,7 +68,7 @@ class ProductController extends Controller
         }
 
         session()->flash('success', 'Le produit '. $product->name.' a été enregistré avec succès');
-        return redirect()->route('products.index');
+        return redirect()->route('backproducts.index');
     }
 
     /**
@@ -120,7 +120,7 @@ class ProductController extends Controller
         }
 
         session()->flash('success', 'Le produit '. $product->name.' a été modifié avec succès');
-        return redirect()->route('products.index');
+        return redirect()->route('backproducts.index');
     }
 
     /**
@@ -135,6 +135,6 @@ class ProductController extends Controller
         $product->delete();
 
         session()->flash('success', 'Le produit '. $product->name.' a été supprimé avec succès');
-        return redirect()->route('products.index');
+        return redirect()->route('backproducts.index');
     }
 }

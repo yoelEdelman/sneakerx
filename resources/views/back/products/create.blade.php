@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Création d'un produit</h3>
                     </div>
-                    <form role="form" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('backproducts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">

@@ -25,6 +25,7 @@
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('assets/js/material-kit.js?v=2.2.0') }}" type="text/javascript"></script>
 
+
 <!-- Js With initialisations For Demo Purpose, Don't Include it in Your Project -->
 <script src="{{ asset('assets/demo/demo.js') }}" type="text/javascript"></script>
 

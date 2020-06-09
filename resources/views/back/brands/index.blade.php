@@ -28,7 +28,7 @@
                     <div class="card-header d-flex">
                         <h3 class="card-title mr-auto">Listes des marques</h3>
                         <div class="ml-auto">
-                            <a href="{{ route('brands.create') }}" class="btn btn-success">Ajouter une marque</a>
+                            <a href="{{ route('backbrands.create') }}" class="btn btn-success">Ajouter une marque</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -54,9 +54,9 @@
                                     <td>{{ $brand->created_at }}</td>
                                     <td>{{ $brand->updated_at }}</td>
                                     <td class="d-flex justify-content-start">
-                                        <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('backbrands.edit', $brand->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
 
-                                        <form action="{{ route('brands.destroy', $brand->id) }}" method="post" class="form-inline ml-auto">
+                                        <form action="{{ route('backbrands.destroy', $brand->id) }}" method="post" class="form-inline ml-auto">
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <div class="form-group has-white">

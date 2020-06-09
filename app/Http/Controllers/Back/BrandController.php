@@ -57,7 +57,7 @@ class BrandController extends Controller
         $image->save();
 
         session()->flash('success', 'La marque '. $brand->name.' a été enregistré avec succès');
-        return redirect()->route('brands.index');
+        return redirect()->route('backbrands.index');
     }
 
     /**
@@ -97,7 +97,7 @@ class BrandController extends Controller
         $image->save();
 
         session()->flash('success', 'La marque '. $brand->name.' a été modifié avec succès');
-        return redirect()->route('brands.index');
+        return redirect()->route('backbrands.index');
     }
 
     /**
@@ -112,6 +112,6 @@ class BrandController extends Controller
         $brand->delete();
 
         session()->flash('success', 'La marque '. $brand->name.' a été supprimé avec succès');
-        return redirect()->route('brands.index');
+        return redirect()->route('backbrands.index');
     }
 }
