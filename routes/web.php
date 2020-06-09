@@ -22,3 +22,11 @@ Route::resource('news', 'NewsController');
 Route::resource('cart', 'CartController')->only(['index', 'store', 'update', 'destroy']);
 Route::resource('checkout', 'CheckoutController')->only(['index', 'store', 'update', 'destroy']);
 
+
+Route::prefix('admin')->namespace('Back')->group(function () {
+    Route::name('admin')->get('/', 'AdminController@index');
+    Route::resource('backbrands', 'BrandController')->except('show');
+    Route::resource('backproducts', 'ProductController')->except('show');
+    Route::resource('backnews', 'NewsController')->except('show');
+
+});
