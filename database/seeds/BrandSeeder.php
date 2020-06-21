@@ -2,6 +2,7 @@
 
 use App\Models\Brand;
 use App\Models\Image;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class BrandSeeder extends Seeder
@@ -24,56 +25,31 @@ class BrandSeeder extends Seeder
         $image = new Image();
         $image->imageable_id = $brand->id;
         $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Adidas_Logo.svg.png');
+        $image->filename = 'adidas.png';
         $image->save();
 
-        $brand = new Brand();
-        $brand->name = 'Birkenstock';
-        $brand->banner = $faker->sentence($nbWords = 10, $variableNbWords = true);
-        $brand->description = $faker->paragraph($nbSentences = 5, $variableNbSentences = true);
-        $brand->save();
+        for ($j = 0; $j < 20; $j++) {
+            $product = new Product();
+            $product->name = $faker->sentence($nbWords = 2, $variableNbWords = true);
+            $product->description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $product->main_image = 'imgtest' . rand(1, 4) . '.jpg';
+            $product->price = $faker->numberBetween($min = 20, $max = 200);
+            $product->color = $faker->colorName;
+            $product->size = $faker->numberBetween($min = 38, $max = 46);
+            $product->quantity = $faker->numberBetween($min = 0, $max = 35);
+            $product->release_date = $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null);
+            $product->is_published = $faker->numberBetween($min = 0, $max = 1);
+            $product->brand_id = $brand->id;
+            $product->save();
 
-        $image = new Image();
-        $image->imageable_id = $brand->id;
-        $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Birkenstock_logo.svg.png');
-        $image->save();
-
-        $brand = new Brand();
-        $brand->name = 'Converse';
-        $brand->banner = $faker->sentence($nbWords = 10, $variableNbWords = true);
-        $brand->description = $faker->paragraph($nbSentences = 5, $variableNbSentences = true);
-        $brand->save();
-
-        $image = new Image();
-        $image->imageable_id = $brand->id;
-        $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Converse_logo.svg.png');
-        $image->save();
-
-        $brand = new Brand();
-        $brand->name = 'Dr Martens';
-        $brand->banner = $faker->sentence($nbWords = 10, $variableNbWords = true);
-        $brand->description = $faker->paragraph($nbSentences = 5, $variableNbSentences = true);
-        $brand->save();
-
-        $image = new Image();
-        $image->imageable_id = $brand->id;
-        $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Dr._Martens_Logo.svg.png');
-        $image->save();
-
-        $brand = new Brand();
-        $brand->name = 'Air Jordan';
-        $brand->banner = $faker->sentence($nbWords = 10, $variableNbWords = true);
-        $brand->description = $faker->paragraph($nbSentences = 5, $variableNbSentences = true);
-        $brand->save();
-
-        $image = new Image();
-        $image->imageable_id = $brand->id;
-        $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Jumpman_logo.svg.png');
-        $image->save();
+            for ($k = 0; $k < 4; $k++) {
+                $image = new Image();
+                $image->imageable_id = $product->id;
+                $image->imageable_type = 'App\Models\Product';
+                $image->filename = 'imgtest' . rand(1, 4) . '.jpg';
+                $image->save();
+            }
+        }
 
         $brand = new Brand();
         $brand->name = 'Fila';
@@ -84,8 +60,31 @@ class BrandSeeder extends Seeder
         $image = new Image();
         $image->imageable_id = $brand->id;
         $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Logo_Fila.svg.png');
+        $image->filename = 'fila.png';
         $image->save();
+
+        for ($j = 0; $j < 20; $j++) {
+            $product = new Product();
+            $product->name = $faker->sentence($nbWords = 2, $variableNbWords = true);
+            $product->description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $product->main_image = 'imgtest' . rand(1, 4) . '.jpg';
+            $product->price = $faker->numberBetween($min = 20, $max = 200);
+            $product->color = $faker->colorName;
+            $product->size = $faker->numberBetween($min = 38, $max = 46);
+            $product->quantity = $faker->numberBetween($min = 0, $max = 35);
+            $product->release_date = $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null);
+            $product->is_published = $faker->numberBetween($min = 0, $max = 1);
+            $product->brand_id = $brand->id;
+            $product->save();
+
+            for ($k = 0; $k < 4; $k++) {
+                $image = new Image();
+                $image->imageable_id = $product->id;
+                $image->imageable_type = 'App\Models\Product';
+                $image->filename = 'imgtest' . rand(1, 4) . '.jpg';
+                $image->save();
+            }
+        }
 
         $brand = new Brand();
         $brand->name = 'Reebok';
@@ -96,8 +95,31 @@ class BrandSeeder extends Seeder
         $image = new Image();
         $image->imageable_id = $brand->id;
         $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Logo_Reebok_2019.png');
+        $image->filename = 'reebok.png';
         $image->save();
+
+        for ($j = 0; $j < 20; $j++) {
+            $product = new Product();
+            $product->name = $faker->sentence($nbWords = 2, $variableNbWords = true);
+            $product->description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $product->main_image = 'imgtest' . rand(1, 4) . '.jpg';
+            $product->price = $faker->numberBetween($min = 20, $max = 200);
+            $product->color = $faker->colorName;
+            $product->size = $faker->numberBetween($min = 38, $max = 46);
+            $product->quantity = $faker->numberBetween($min = 0, $max = 35);
+            $product->release_date = $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null);
+            $product->is_published = $faker->numberBetween($min = 0, $max = 1);
+            $product->brand_id = $brand->id;
+            $product->save();
+
+            for ($k = 0; $k < 4; $k++) {
+                $image = new Image();
+                $image->imageable_id = $product->id;
+                $image->imageable_type = 'App\Models\Product';
+                $image->filename = 'imgtest' . rand(1, 4) . '.jpg';
+                $image->save();
+            }
+        }
 
         $brand = new Brand();
         $brand->name = 'Puma';
@@ -108,8 +130,31 @@ class BrandSeeder extends Seeder
         $image = new Image();
         $image->imageable_id = $brand->id;
         $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Puma_AG.svg.png');
+        $image->filename = 'puma.png';
         $image->save();
+
+        for ($j = 0; $j < 20; $j++) {
+            $product = new Product();
+            $product->name = $faker->sentence($nbWords = 2, $variableNbWords = true);
+            $product->description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $product->main_image = 'imgtest' . rand(1, 4) . '.jpg';
+            $product->price = $faker->numberBetween($min = 20, $max = 200);
+            $product->color = $faker->colorName;
+            $product->size = $faker->numberBetween($min = 38, $max = 46);
+            $product->quantity = $faker->numberBetween($min = 0, $max = 35);
+            $product->release_date = $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null);
+            $product->is_published = $faker->numberBetween($min = 0, $max = 1);
+            $product->brand_id = $brand->id;
+            $product->save();
+
+            for ($k = 0; $k < 4; $k++) {
+                $image = new Image();
+                $image->imageable_id = $product->id;
+                $image->imageable_type = 'App\Models\Product';
+                $image->filename = 'imgtest' . rand(1, 4) . '.jpg';
+                $image->save();
+            }
+        }
 
         $brand = new Brand();
         $brand->name = 'Nike';
@@ -120,8 +165,31 @@ class BrandSeeder extends Seeder
         $image = new Image();
         $image->imageable_id = $brand->id;
         $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Swoosh.svg.png');
+        $image->filename = 'nike.png';
         $image->save();
+
+        for ($j = 0; $j < 20; $j++) {
+            $product = new Product();
+            $product->name = $faker->sentence($nbWords = 2, $variableNbWords = true);
+            $product->description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $product->main_image = 'imgtest' . rand(1, 4) . '.jpg';
+            $product->price = $faker->numberBetween($min = 20, $max = 200);
+            $product->color = $faker->colorName;
+            $product->size = $faker->numberBetween($min = 38, $max = 46);
+            $product->quantity = $faker->numberBetween($min = 0, $max = 35);
+            $product->release_date = $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null);
+            $product->is_published = $faker->numberBetween($min = 0, $max = 1);
+            $product->brand_id = $brand->id;
+            $product->save();
+
+            for ($k = 0; $k < 4; $k++) {
+                $image = new Image();
+                $image->imageable_id = $product->id;
+                $image->imageable_type = 'App\Models\Product';
+                $image->filename = 'imgtest' . rand(1, 4) . '.jpg';
+                $image->save();
+            }
+        }
 
         $brand = new Brand();
         $brand->name = 'Vans';
@@ -132,21 +200,30 @@ class BrandSeeder extends Seeder
         $image = new Image();
         $image->imageable_id = $brand->id;
         $image->imageable_type = 'App\Models\Brand';
-        $image->filename = asset('assets/img/brands/Vans_logo.svg.png');
+        $image->filename = 'vans.png';
         $image->save();
 
-//        for ($i = 0; $i < 10; $i++) {
-//            $brand = new Brand();
-//            $brand->name = $faker->company;
-//            $brand->banner = $faker->sentence($nbWords = 10, $variableNbWords = true);
-//            $brand->description = $faker->paragraph($nbSentences = 5, $variableNbSentences = true);
-//            $brand->save();
-//
-//            $image = new Image();
-//            $image->imageable_id = $brand->id;
-//            $image->imageable_type = 'App\Models\Brand';
-//            $image->filename = 'http://lorempixel.com/640/480/';
-//            $image->save();
-//        }
+        for ($j = 0; $j < 20; $j++) {
+            $product = new Product();
+            $product->name = $faker->sentence($nbWords = 2, $variableNbWords = true);
+            $product->description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $product->main_image = 'imgtest' . rand(1, 4) . '.jpg';
+            $product->price = $faker->numberBetween($min = 20, $max = 200);
+            $product->color = $faker->colorName;
+            $product->size = $faker->numberBetween($min = 38, $max = 46);
+            $product->quantity = $faker->numberBetween($min = 0, $max = 35);
+            $product->release_date = $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null);
+            $product->is_published = $faker->numberBetween($min = 0, $max = 1);
+            $product->brand_id = $brand->id;
+            $product->save();
+
+            for ($k = 0; $k < 4; $k++) {
+                $image = new Image();
+                $image->imageable_id = $product->id;
+                $image->imageable_type = 'App\Models\Product';
+                $image->filename = 'imgtest' . rand(1, 4) . '.jpg';
+                $image->save();
+            }
+        }
     }
 }
