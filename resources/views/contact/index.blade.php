@@ -78,9 +78,9 @@
                                 <i class="material-icons">phone</i>
                             </div>
                             <div class="description">
-                                <h4 class="info-title">Give us a ring</h4>
+                                <h4 class="info-title">Contactez-nous</h4>
                                 <p> Yoel Edelman<br>
-                                    +336 75 20 78 87<br>
+                                    +33 6 75 20 78 87<br>
                                     Lun - Ven, 8:00-22:00
                                 </p>
                             </div>
@@ -90,11 +90,11 @@
                                 <i class="material-icons">business_center</i>
                             </div>
                             <div class="description">
-                                <h4 class="info-title">Legal Information</h4>
-                                <p> Creative Tim Ltd.<br>
+                                <h4 class="info-title">Informations légales</h4>
+                                <p> SneakersX Ltd.<br>
                                     VAT &#xB7; EN2341241<br>
                                     IBAN &#xB7; EN8732ENGB2300099123<br>
-                                    Bank &#xB7; Great Britain Bank
+                                    Banque &#xB7; Webstart Bank
                                 </p>
                             </div>
                         </div>

@@ -13,7 +13,7 @@ class UpdateNewsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateNewsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'bail|required',
+            'summary' => 'bail|required',
+            'content' => 'bail|required',
+            'is_published' => 'bail|required',
+            'image' => 'bail|required',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -21,6 +22,17 @@ class Product extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Get the created news date in humans format.
+     *
+     * @return string
+     */
+    public function getReleaseDateForHumans()
+    {
+        $date = new carbon($this->release_date);
+        return $date->diffForHumans();
+    }
 
     /*
     |--------------------------------------------------------------------------

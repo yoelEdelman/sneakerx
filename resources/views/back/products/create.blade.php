@@ -25,7 +25,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Nom de la marque</label>
+                                <label for="name">Nom du produit</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Entrer le nom de la marque">
                                 @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
@@ -112,27 +112,17 @@
                             <div class="form-group">
                                 <label for="release_date">Date de sortie:</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-{{--                                    <input type="text" class="form-control datetimepicker-input @error('release_date') is-invalid @enderror" name="release_date" id="release_date" value="{{ old('release_date') }}" data-target="#reservationdate"/>--}}
-{{--                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">--}}
-{{--                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>--}}
-{{--                                    </div>--}}
+
                                     <input type="date" class="form-control @error('release_date') is-invalid @enderror" name="release_date" id="release_date" value="{{ old('release_date') }}"/>
                                     <div class="input-group-append">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                     @error('release_date')<div class="invalid-feedback">{{ $message }}</div>@enderror
                                 </div>
-{{--                                <div class="input-group date" id="reservationdate" data-target-input="nearest">--}}
-{{--                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>--}}
-{{--                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">--}}
-{{--                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
 
                             <div class="form-group">
                                 <label for="is_published">Publié ?</label>
-{{--                                <input type="checkbox" name="is_published" class=" @error('is_published') is-invalid @enderror">--}}
                                 <select name="is_published" class="form-control select2bs4 @error('is_published') is-invalid @enderror" style="width: 100%;">
                                     <option selected="selected" value="0">Non</option>
                                     <option value="1">Oui</option>

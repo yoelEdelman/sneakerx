@@ -9,11 +9,11 @@
 @endsection
 
 @section('header')
-    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/bg2.jpg');">
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url({{ asset('assets/img/shopping-cart.jpg') }});">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">Shopping Page</h2>
+                    <h2 class="title">Mon Panier</h2>
                 </div>
             </div>
         </div>
@@ -26,7 +26,6 @@
             <div class="card card-plain">
                 <div class="card-body">
 
-                    {{-- Flash messages --}}
                     @if(session()->has('success'))
                         @include('messages.success')
                     @elseif(session()->has('error'))
@@ -35,28 +34,29 @@
 
                     <h3 class="card-title">Panier</h3>
                     <br />
-                    <div class="table-responsive">
-                        <table class="table table-shopping">
-                            <thead>
-                            <tr>
-                                <th class="text-center"></th>
-                                <th>Produit</th>
-                                <th class="th-description">Couleur</th>
-                                <th class="th-description">Taille</th>
-                                <th class="text-right">Prix</th>
-                                <th class="text-right">Qté</th>
-                                <th class="text-right">Montant</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                    <div class="col-lg-12 table-responsive">
+                        <table class="col-lg table table-shopping">
+
                             @if(session('userCart'))
+                                <thead>
+                                <tr>
+                                    <th class="text-center"></th>
+                                    <th>Produit</th>
+                                    <th class="th-description">Couleur</th>
+                                    <th class="th-description">Taille</th>
+                                    <th class="text-right">Prix</th>
+                                    <th class="text-right">Qté</th>
+                                    <th class="text-right">Montant</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
                                 @foreach(session('userCart') as $key => $product)
                                 <tr>
                                     <td>
                                         <div class="img-container">
-                                            <img src="{{ $product['image'] }}" alt="...">
+                                            <img src="{{ Storage::disk('public')->url('images/' . $product['image']) }}" alt="...">
                                         </div>
                                     </td>
                                     <td class="td-name">
@@ -93,7 +93,7 @@
                                         </div>
                                     </td>
                                     <td class="td-number">
-                                        {{ $product['price'] }}<small> &euro;</small>
+                                        {{ $product['price'] * $product['quantity'] }}<small> &euro;</small>
                                     </td>
                                     <td class="td-actions">
                                         <form method="post" action="{{ route('cart.destroy', $key) }}">
@@ -106,25 +106,25 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td class="td-total">
+                                        Total
+                                    </td>
+                                    <td colspan="1" class="td-price">
+                                        <small>&euro;</small>{{ session('userCartTotal') }}
+                                    </td>
+                                    <td colspan="1"></td>
+                                    <td colspan="2" class="text-right">
+                                        <a href="{{ route('checkout.index') }}" type="button" class="btn btn-primary btn-round">Finaliser l'achat <i class="material-icons">keyboard_arrow_right</i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
                             @else
                                 <div class="alert alert-primary" role="alert">
                                     Votre panier est vide
                                 </div>
                             @endif
-                            <tr>
-                                <td colspan="3"></td>
-                                <td class="td-total">
-                                    Total
-                                </td>
-                                <td colspan="1" class="td-price">
-                                    <small>&euro;</small>{{ session('userCartTotal') }}
-                                </td>
-                                <td colspan="1"></td>
-                                <td colspan="2" class="text-right">
-                                    <a href="{{ route('checkout.index') }}" type="button" class="btn btn-info btn-round">Finaliser l'achat <i class="material-icons">keyboard_arrow_right</i></a>
-                                </td>
-                            </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>

@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">Shopping Page</h2>
+                    <h2 class="title">Page Panier</h2>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
     <div class="main main-raised">
         <div class="container">
             <div class="row row justify-content-between">
-                <div class="col-6 mt-2">
+                <div class="col-lg-5 mt-2">
                     <div class="row">
 
                         <form class="col-12" id="contact-form" action="{{ url('checkout') }}" method="POST">
@@ -38,7 +38,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating is-empty">
-                                                <label class="bmd-label-floating">First name</label>
+                                                <label class="bmd-label-floating">Prenom</label>
                                                 <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
                                                 <span class="material-input"></span>
                                                 @error('first_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating is-empty">
-                                                <label class="bmd-label-floating">Last name</label>
+                                                <label class="bmd-label-floating">Nom</label>
                                                 <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
                                                 <span class="material-input"></span>
                                                 @error('last_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group label-floating is-empty">
-                                        <label class="bmd-label-floating">Address</label>
+                                        <label class="bmd-label-floating">Addressw</label>
                                         <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
                                         <span class="material-input"></span>
                                         @error('address')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group label-floating is-empty">
-                                        <label class="bmd-label-floating">Email address</label>
+                                        <label class="bmd-label-floating">Email</label>
                                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
                                         <span class="material-input"></span>
                                         @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -93,11 +93,11 @@
 
                         <div class="card card-contact mt-5">
                                 <div class="card-header card-header-raised card-header-danger text-center">
-                                    <h4 class="card-title">Secure Payment</h4>
+                                    <h4 class="card-title">Payement sécurisé</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group label-floating is-empty">
-                                        <label class="bmd-label-floating">Credit Card Number:</label>
+                                        <label class="bmd-label-floating">Numéro de carte de crédit:</label>
                                         <input type="text" name="card_number" class="form-control @error('card_number') is-invalid @enderror" value="{{ old('card_number') }}">
                                         <span class="material-input"></span>
                                         @error('card_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -111,7 +111,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating is-empty">
-                                                <label class="bmd-label-floating">Expiration Date Month</label>
+                                                <label class="bmd-label-floating">Mois d'expiration</label>
                                                 <input type="text" name="month" class="form-control @error('month') is-invalid @enderror" value="{{ old('month') }}">
                                                 <span class="material-input"></span>
                                                 @error('month')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating is-empty">
-                                                <label class="bmd-label-floating">Expiration Date Year</label>
+                                                <label class="bmd-label-floating">Années d'expiration</label>
                                                 <input type="text" name="year" class="form-control @error('year') is-invalid @enderror" value="{{ old('year') }}">
                                                 <span class="material-input"></span>
                                                 @error('year')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -130,7 +130,7 @@
                                 <div class="card-footer justify-content-between">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value=""> I'm not a robot
+                                            <input class="form-check-input" type="checkbox" value=""> Je ne suis pas un robot
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -143,18 +143,18 @@
                     </div>
                  </div>
 
-                <div class="col-5 card">
+                <div class="col-lg-7 card">
                     <div class="card-body">
-                        <h3 class="card-title">Panier</h3>
+                        <h3 class="card-title">Panier total {{ session('userCartTotal') }} &euro;</h3>
                         <br />
                         <div class="table-responsive">
-                            <table class="col-12 table table-shopping">
+                            <table class="col-lg-12 table table-shopping">
                                 <tbody>
                                 @foreach(session('userCart') as $key => $product)
                                 <tr>
                                     <td>
                                         <div class="img-container">
-                                            <img src="{{ $product['image'] }}" alt="...">
+                                            <img src="{{ Storage::disk('public')->url('images/' . $product['image']) }}" alt="...">
                                         </div>
                                     </td>
                                     <td>
@@ -162,13 +162,24 @@
                                         <br />
                                         <small>by {{ $product['brand'] }}</small>
                                     </td>
-                                    <td>
+                                    <td class="d-none d-lg-block">
                                         Couleur: {{ $product['color'] }} <br>
                                         Taille: {{ $product['size'] }} <br>
                                         Prix: {{ $product['price'] }}<small> &euro;</small> <br>
                                         Qté: {{ $product['quantity'] }} <br>
                                     </td>
-                                    <td>
+                                    <td class="d-none d-lg-block">
+                                        {{ $product['quantity'] * $product['price'] }}<small> &euro;</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="d-lg-none">
+                                        Couleur: {{ $product['color'] }} <br>
+                                        Taille: {{ $product['size'] }} <br>
+                                        Prix: {{ $product['price'] }}<small> &euro;</small> <br>
+                                        Qté: {{ $product['quantity'] }} <br>
+                                    </td>
+                                    <td class="d-lg-none">
                                         {{ $product['quantity'] * $product['price'] }}<small> &euro;</small>
                                     </td>
                                 </tr>

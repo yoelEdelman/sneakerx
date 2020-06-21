@@ -22,6 +22,16 @@ class Brand extends Model
      */
     protected $guarded = [];
 
+    /**
+     * Get the created news date in humans format.
+     *
+     * @return string
+     */
+    public function getActiveProducts()
+    {
+        return count(Brand::products()->where('is_published', 1)->get());
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relations

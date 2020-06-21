@@ -37,23 +37,74 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user-alt"></i>
+{{--                <li class="nav-item has-treeview">--}}
+{{--                    <a href="#" class="nav-link">--}}
+{{--                        <i class="nav-icon fas fa-user-alt"></i>--}}
+{{--                        <p>--}}
+{{--                            Clients--}}
+{{--                            <i class="right fas fa-angle-left"></i>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                    <ul class="nav nav-treeview">--}}
+{{--                        <x-menu-item href="#" :sub=true :active=false>--}}
+{{--                            Clients--}}
+{{--                        </x-menu-item>--}}
+{{--                        <x-menu-item href="#" :sub=true :active=false>--}}
+{{--                            Adresses--}}
+{{--                        </x-menu-item>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+
+                <li class="nav-item">
+                    <a href="{{ route('home.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
-                            Clients
-                            <i class="right fas fa-angle-left"></i>
+                            Voir le site
+{{--                            <i class="right fas fa-angle-left"></i>--}}
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <x-menu-item href="#" :sub=true :active=false>
-                            Clients
-                        </x-menu-item>
-                        <x-menu-item href="#" :sub=true :active=false>
-                            Adresses
-                        </x-menu-item>
-                    </ul>
                 </li>
+
+                <!-- Authentication Links -->
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-alt"></i>
+                            <p>
+                                {{ Auth::user()->name }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+
+                                    <p>{{ __('Logout') }}</p>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endguest
+
+
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-store"></i>
@@ -81,7 +132,7 @@
 
 
                 <li class="nav-item has-treeview">
-                    <a href="{{ route('backbrands.index') }}" class="nav-link">
+                    <a href="{{ route('backnews.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>Actualités</p>
                     </a>
@@ -106,9 +157,9 @@
                 {{--                            </x-menu-item>--}}
                 {{--                        </ul>--}}
                 {{--                    </li>--}}
-                <x-menu-item href="#" icon="shopping-basket" :active=false>
-                    Commandes
-                </x-menu-item>
+{{--                <x-menu-item href="#" icon="shopping-basket" :active=false>--}}
+{{--                    Commandes--}}
+{{--                </x-menu-item>--}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -42,9 +42,6 @@ class ContactController extends Controller
 
         session()->flash('success', 'Votre message a été envoyé avec succès');
         return redirect()->route('contact.index');
-
-
-//        return view('index');
     }
 
     /**

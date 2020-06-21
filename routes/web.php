@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::resource('brands', 'BrandController');
+Route::get('products/filter', 'ProductController@filter')->name('products.filter');
 Route::resource('products', 'ProductController');
-Route::get('products/filter', 'ProductController@index')->name('products.filter');
 Route::resource('contact', 'ContactController');
 Route::resource('news', 'NewsController');
 Route::resource('cart', 'CartController')->only(['index', 'store', 'update', 'destroy']);
@@ -30,3 +30,7 @@ Route::prefix('admin')->namespace('Back')->group(function () {
     Route::resource('backnews', 'NewsController')->except('show');
 
 });
+
+Auth::routes(['register' => false,]);
+
+Route::get('/home', 'HomeController@index')->name('home');

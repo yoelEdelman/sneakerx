@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::get('home', 'Api\HomeController@index');
+Route::resource('brands', 'Api\BrandController')->only('index', 'show');
+Route::resource('products', 'Api\ProductController')->only('index', 'show');
+Route::resource('news', 'Api\NewsController')->only('index', 'show');
+
+

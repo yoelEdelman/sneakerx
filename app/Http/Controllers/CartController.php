@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdToCartRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,16 +16,19 @@ class CartController extends Controller
     public function index()
     {
         $total = 0;
-        foreach (session('userCart') as $product) {
-            if ($product['quantity'] > 1) {
-                for ($i = 0; $i < $product['quantity']; $i++) {
+        if (!session('userCart') == null) {
+            foreach (session('userCart') as $product) {
+                if ($product['quantity'] > 1) {
+                    for ($i = 0; $i < $product['quantity']; $i++) {
+                        $total += $product['price'];
+                    }
+                }
+                else {
                     $total += $product['price'];
                 }
             }
-            else {
-                $total += $product['price'];
-            }
         }
+
         session()->put('userCartTotal', $total);
 
         return view('cart.index');
@@ -36,7 +40,7 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdToCartRequest $request)
     {
         $id = $request['product_id'];
         $cart = session()->get('userCart');

@@ -48,7 +48,7 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        $products = Brand::find($id)->products()->paginate(15);
+        $products = Brand::find($id)->products()->where('is_published', 1)->paginate(15);
         return view('brands.show', compact('products'));
     }
 

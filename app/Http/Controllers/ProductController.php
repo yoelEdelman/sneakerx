@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::paginate(15);
+        $products = Product::where('is_published', 1)->paginate(15);
         return view('products.index', compact('products'));
     }
 
@@ -25,8 +25,7 @@ class ProductController extends Controller
      */
     public function filter(Request $request)
     {
-//        dd($request->name);
-        $products = Product::where('name', 'LIKE', "%{$request->name}%")->paginate(15);
+        $products = Product::where('is_published', 1)->where('name', 'LIKE', "%{$request->name}%")->paginate(15);
         return view('products.index', compact('products'));
     }
 

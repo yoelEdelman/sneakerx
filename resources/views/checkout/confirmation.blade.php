@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">Confirmation Page</h2>
+                    <h2 class="title">Page de confirmation</h2>
                 </div>
             </div>
         </div>
@@ -21,32 +21,30 @@
 @endsection
 
 @section('content')
-
-    <div class="main main-raised">
-        <div class="container">
-            <div class="row">
-                <h3>Récapitulatif de votre commande</h3>
-                @if($customer)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nom: {{ $customer->name }}</h5>
-                            <p class="card-text">{{ $customer->email }}</p>
-                            <p class="card-text">Adresse: {{ $customer->address }} {{ $customer->zip_code }}</p>
-                            @if($products)
-                                @foreach($products as $product)
-                                    <div class="card-body">
-                                        <h5 class="card-title">Nom du produit: {{ $product['name'] }}</h5>
-                                        <p class="card-text">Quantité: {{ $product['quantity'] }}</p>
-                                        <p class="card-text">Couleur: {{ $product['color'] }}</p>
-                                        <p class="card-text">Prix: {{ $product['price'] }}</p>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="row">
+            <h3>Récapitulatif de votre commande</h3>
+            @if($customer)
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Nom: {{ $customer->name }}</h5>
+                        <p class="card-text">{{ $customer->email }}</p>
+                        <p class="card-text">Adresse: {{ $customer->address }} {{ $customer->zip_code }}</p>
+                        @if($products)
+                            @foreach($products as $product)
+                                <div class="card-body">
+                                    <h5 class="card-title">Nom du produit: {{ $product['name'] }}</h5>
+                                    <p class="card-text">Quantité: {{ $product['quantity'] }}</p>
+                                    <p class="card-text">Couleur: {{ $product['color'] }}</p>
+                                    <p class="card-text">Prix: {{ $product['price'] }}</p>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
     </div>
-
+</div>
 @endsection
