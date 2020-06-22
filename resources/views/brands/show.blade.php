@@ -52,9 +52,7 @@
                                             <a href="#">
                                                 <h4 class="card-title">{{ $product->name }}</h4>
                                             </a>
-                                            <p class="description">
-                                                Impeccably tailored in Italy from lightweight navy wool.
-                                            </p>
+                                            <p class="description">{!! $product->description !!}</p>
                                         </div>
                                         <div class="card-footer justify-content-between">
                                             <div class="price-container">
