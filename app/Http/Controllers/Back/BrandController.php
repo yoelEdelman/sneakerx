@@ -58,7 +58,7 @@ class BrandController extends Controller
         $brand->save();
 
         // Save image
-        $path = basename ($request->image->getClientOriginalName()->store('images', 'public'));
+        $path = basename ($request->image->store('images', 'public'));
 
         $image = new Image();
         $image->imageable_id = $brand->id;
@@ -98,7 +98,7 @@ class BrandController extends Controller
         $brand->save();
 
         // Save image
-        $path = basename ($request->image->getClientOriginalName()->store('images', 'public'));
+        $path = basename ($request->image->store('images', 'public'));
 
         $image = Image::find($brand->images[0]->id);
         $image->imageable_id = $brand->id;
