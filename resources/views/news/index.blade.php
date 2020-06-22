@@ -31,7 +31,7 @@
                         <div class="card card-blog">
                             <div class="card-header card-header-image">
                                 <a href="{{ route('news.show', $new->id) }}">
-                                    <img src="{{ Storage::disk('public')->url('images/' . $new->images[0]->filename) }}" alt="">
+                                    <img src="{{ url('images/' . $new->images[0]->filename) }}" alt="">
                                 </a>
                             </div>
                             <div class="card-body">

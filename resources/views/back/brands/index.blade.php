@@ -48,7 +48,7 @@
                             @foreach($brands as $brand)
                                 <tr>
                                     <td>{{ $brand->id }}</td>
-                                    <td><img class="img" src="{{ Storage::disk('public')->url('images/' . $brand->images[0]->filename) }}" style="height: 65px"></td>
+                                    <td><img class="img" src="{{ url('images/' . $brand->images[0]->filename) }}" style="height: 65px"></td>
                                     <td>{{ $brand->name }}</td>
                                     <td>{{ $brand->created_at }}</td>
                                     <td>{{ $brand->updated_at }}</td>

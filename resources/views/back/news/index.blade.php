@@ -48,7 +48,7 @@
                             @foreach($news as $new)
                                 <tr>
                                     <td>{{ $new->id }}</td>
-                                    <td><img class="img" src="{{ Storage::disk('public')->url('images/' . $new->images[0]->filename) }}" style="height: 65px"></td>
+                                    <td><img class="img" src="{{ url('images/' . $new->images[0]->filename) }}" style="height: 65px"></td>
                                     <td>{{ $new->title }}</td>
                                     {{--                                    <td>{{ $new->banner }}</td>--}}
                                     <td>{{ $new->created_at }}</td>
