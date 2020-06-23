@@ -18,7 +18,7 @@ class NewsController extends Controller
     {
         $news = News::where('is_published', 1)->orderBy('id', 'DESC')->with('author', 'images')->get();
         foreach ($news as $new) {
-            $new->image = Storage::disk('public')->url('images/' . $new->images[0]->filename);
+            $new->image = url('images/' . $new->images[0]->filename);
             $new->date = $new->getCreatedNewsDateForHumans();
         }
         return response()->json($news);
@@ -33,7 +33,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $new = News::where('id', $id)->where('is_published', 1)->with('author', 'images')->first();
-        $new->image = Storage::disk('public')->url('images/' . $new->images[0]->filename);
+        $new->image = url('images/' . $new->images[0]->filename);
         $new->date = $new->getCreatedNewsDateForHumans();
         return response()->json($new);
     }

@@ -19,7 +19,7 @@ class BrandController extends Controller
     {
         $brands = Brand::orderBy('id', 'DESC')->with('images')->get();
         foreach ($brands as $brand) {
-            $brand->image = Storage::disk('public')->url('images/' . $brand->images[0]->filename);
+            $brand->image = url('images/' . $brand->images[0]->filename);
         }
 //        dd($brands);
         return response()->json($brands);
@@ -35,7 +35,7 @@ class BrandController extends Controller
     {
         $products = Brand::find($id)->products()->where('is_published', 1)->orderBy('id', 'DESC')->with('images')->get();
         foreach ($products as $product) {
-            $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
+            $product->main_image = url('images/' . $product->main_image);
         }
         return response()->json($products);
     }

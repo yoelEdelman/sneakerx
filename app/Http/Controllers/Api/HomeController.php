@@ -20,12 +20,12 @@ class HomeController extends Controller
         $products = Product::where('is_published', 1)->with('images')->get()->random(10);
 
         foreach ($products as $product) {
-            $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
+            $product->main_image = url('images/' . $product->main_image);
         }
 
         $news = News::where('is_published', 1)->with('author', 'images')->get()->random(5);
         foreach ($news as $new) {
-            $new->image = Storage::disk('public')->url('images/' . $new->images[0]->filename);
+            $new->image = url('images/' . $new->images[0]->filename);
             $new->date = $new->getCreatedNewsDateForHumans();
         }
 

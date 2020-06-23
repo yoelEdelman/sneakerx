@@ -19,7 +19,7 @@ class ProductController extends Controller
         $products = Product::where('is_published', 1)->orderBy('id', 'DESC')->with('images')->get();
 
         foreach ($products as $product) {
-            $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
+            $product->main_image = url('images/' . $product->main_image);
         }
         return response()->json($products);
     }
@@ -33,9 +33,9 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::where('id', $id)->where('is_published', 1)->with('images')->first();
-        $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
+        $product->main_image = url('images/' . $product->main_image);
         foreach ($product->images as $key => $image) {
-            $image->filename = Storage::disk('public')->url('images/' . $image->filename);
+            $image->filename = url('images/' . $image->filename);
         }
         return response()->json($product);
     }
@@ -50,7 +50,7 @@ class ProductController extends Controller
 //        dd('ok');
         $products = Product::where('is_published', 1)->where('name', 'LIKE', "%{$request->name}%")->with('images')->get();
         foreach ($products as $product) {
-            $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
+            $product->main_image = url('images/' . $product->main_image);
         }
         return response()->json($products);
     }
