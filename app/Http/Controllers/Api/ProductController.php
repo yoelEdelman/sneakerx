@@ -32,12 +32,26 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-//        dd($id);
         $product = Product::where('id', $id)->where('is_published', 1)->with('images')->first();
         $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
         foreach ($product->images as $key => $image) {
             $image->filename = Storage::disk('public')->url('images/' . $image->filename);
         }
         return response()->json($product);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request)
+    {
+//        dd('ok');
+        $products = Product::where('is_published', 1)->where('name', 'LIKE', "%{$request->name}%")->with('images')->get();
+        foreach ($products as $product) {
+            $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
+        }
+        return response()->json($products);
     }
 }
