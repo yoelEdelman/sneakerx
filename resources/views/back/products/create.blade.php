@@ -56,7 +56,7 @@
                                 <label for="image">Images secondaire</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('images') is-invalid @enderror" multiple name="images" id="images" value="{{ old('images') }}">
+                                        <input type="file" class="custom-file-input @error('images') is-invalid @enderror" multiple name="images[]" id="images" value="{{ old('images') }}">
                                         <label class="custom-file-label" for="images">Choisir un fichier</label>
                                         @error('images')<div class="invalid-feedback">{{ $message }}</div>@enderror
                                     </div>

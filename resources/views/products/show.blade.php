@@ -30,24 +30,24 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="tab-content">
                             <div class="tab-pane active" id="product-page1">
-                                <img src="{{ url('images/' . $product->main_image) }}">
+                                <img src="{{ Storage::disk('public')->url('images/' . $product->main_image) }}">
                             </div>
                             @foreach($product->images as $image)
                             <div class="tab-pane" id="product-page{{ $image->id }}">
-                                <img src="{{ url('images/' . $image->filename) }}">
+                                <img src="{{ Storage::disk('public')->url('images/' . $image->filename) }}">
                             </div>
                             @endforeach
                         </div>
                         <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
                             <li class="nav-item">
                                 <a href="#product-page1" class="nav-link" data-toggle="tab">
-                                    <img src="{{ url('images/' . $product->main_image) }}">
+                                    <img src="{{ Storage::disk('public')->url('images/' . $product->main_image) }}">
                                 </a>
                             </li>
                             @foreach($product->images as $image)
                             <li class="nav-item">
                                 <a href="#product-page{{ $image->id }}" class="nav-link" data-toggle="tab">
-                                    <img src="{{ url('images/' . $image->filename) }}">
+                                    <img src="{{ Storage::disk('public')->url('images/' . $image->filename) }}">
                                 </a>
                             </li>
                             @endforeach
@@ -160,7 +160,7 @@
                     <div class="card card-product">
                         <div class="card-header card-header-image">
                             <a href="{{ route('products.show', $randomProduct->id) }}">
-                                <img class="img" src="{{ url('images/' . $randomProduct->main_image) }}">
+                                <img class="img" src="{{ Storage::disk('public')->url('images/' . $randomProduct->main_image) }}">
                             </a>
                         </div>
                         <div class="card-body">

@@ -32,7 +32,7 @@
                     <div class="row">
                         @foreach($new->images as $image)
                             <div class="col-md-10 m-auto">
-                                <img class="img-raised rounded img-fluid" alt="Raised Image" src="{{ url('images/' . $image->filename) }}">
+                                <img class="img-raised rounded img-fluid" alt="Raised Image" src="{{ Storage::disk('public')->url('images/' . $image->filename) }}">
                             </div>
                         @endforeach
                     </div>

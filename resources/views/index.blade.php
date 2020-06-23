@@ -28,7 +28,7 @@
                             <div class="card card-product card-plain">
                                 <div class="card-header card-header-image">
                                     <a href="{{ route('products.show', $product->id) }}">
-                                        <img src="{{ url('images/' . $product->main_image) }}" alt="">
+                                        <img src="{{ Storage::disk('public')->url('images/' . $product->main_image) }}" alt="">
                                     </a>
                                 </div>
                                 <div class="card-body text-center">
@@ -58,7 +58,7 @@
                     @for($i = 0; $i < 5; $i++)
                         @if($i < 3)
                             <div class="col-md-4">
-                                <div class="card card-background" style="background-image: url({{ url('images/' . $news[$i]->images[0]->filename) }})">
+                                <div class="card card-background" style="background-image: url({{ Storage::disk('public')->url('images/' . $news[$i]->images[0]->filename) }})">
                                     <div class="card-body">
                                         <h6 class="card-category text-info">Productivy Apps</h6>
                                         <a href="{{ route('news.show', $news[$i]->id) }}">
@@ -73,7 +73,7 @@
                             </div>
                         @else
                             <div class="col-md-6">
-                                <div class="card card-background" style="background-image: url({{ url('images/' . $news[$i]->images[0]->filename ) }})">
+                                <div class="card card-background" style="background-image: url({{ Storage::disk('public')->url('images/' . $news[$i]->images[0]->filename ) }})">
                                     <div class="card-body">
                                         <h6 class="card-category text-info">Tutorials</h6>
                                         <a href="{{ route('news.show', $news[$i]->id) }}">

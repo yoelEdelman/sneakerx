@@ -154,7 +154,7 @@
                                 <tr>
                                     <td>
                                         <div class="img-container">
-                                            <img src="{{ url('images/' . $product['image']) }}" alt="...">
+                                            <img src="{{ Storage::disk('public')->url('images/' . $product['image']) }}" alt="...">
                                         </div>
                                     </td>
                                     <td>

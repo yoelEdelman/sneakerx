@@ -33,7 +33,7 @@
                     <div class="card card-profile card-plain">
                         <div class="card-header card-header-image">
                             <a href="{{ route('brands.show', $brand->id) }}" class="bg-white p-1">
-                                <img class="img" src="{{ url('images/' . $brand->images[0]->filename) }}" style="height: 215px">
+                                <img class="img" src="{{ Storage::disk('public')->url('images/' . $brand->images[0]->filename) }}" style="height: 215px">
                             </a>
                         </div>
                         <div class="card-body ">

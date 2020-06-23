@@ -48,7 +48,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>{{ $product->id }}</td>
-                                    <td><img class="img" src="{{ url('images/' . $product->main_image) }}" style="height: 65px"></td>
+                                    <td><img class="img" src="{{ Storage::disk('public')->url('images/' . $product->main_image) }}" style="height: 65px"></td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->created_at }}</td>
                                     <td>{{ $product->updated_at }}</td>
