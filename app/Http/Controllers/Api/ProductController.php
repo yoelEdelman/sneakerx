@@ -20,6 +20,7 @@ class ProductController extends Controller
 
         foreach ($products as $product) {
             $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
+            $product->date = $product->getReleaseDateForHumans();
         }
         return response()->json($products);
     }
@@ -36,6 +37,7 @@ class ProductController extends Controller
         $product->main_image = Storage::disk('public')->url('images/' . $product->main_image);
         foreach ($product->images as $key => $image) {
             $image->filename = Storage::disk('public')->url('images/' . $image->filename);
+            $product->date = $product->getReleaseDateForHumans();
         }
         return response()->json($product);
     }
