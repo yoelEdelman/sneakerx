@@ -30,7 +30,7 @@ class Product extends Model
      */
     public function getReleaseDateForHumans()
     {
-        $date = new carbon($this->release_date);
+        $date = new carbon($this->created_at);
         return $date->diffForHumans();
     }
 
